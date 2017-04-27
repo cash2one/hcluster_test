@@ -54,10 +54,10 @@ def paint(Z):
 	dendrogram(Z, leaf_rotation=90., leaf_font_size=8.)
 	plt.show()
 
-titles = [line.strip().split('\t')[0] for line in open('baidu_hotdata_t1.txt')]
-corpus = [line.strip() for line in open('baidu_hotdata_t1_segs.txt')]
+titles = [line.strip().split('\t')[1] for line in open('sogou_experiment.txt')]
+corpus = [line.strip() for line in open('sogou_experiment_segs.txt')]
 corpus_without_number = []
-for line in corpus:
+for line in corpus[:100]:
 	temp = []
 	for l in line.split():
 		if is_number(l):continue
@@ -86,7 +86,7 @@ paint(Z) #画层次聚类过程图
 # fancy_dendrogram(Z, truncate_mode='lastp', p=12, leaf_rotation=90., leaf_font_size=12., show_contracted=True, annotate_above=10,max_d=max_d)
 # plt.show()
 dict_rst = {}
-max_d = 3.5
+max_d = 2.5
 clusters = fcluster(Z, max_d, criterion='distance')
 #print clusters
 print '距离为' + str(max_d) + '的分类结果------------------'
